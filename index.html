@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para mi Reini — Diciembre</title>
+<meta name="description" content="La lista que vamos a hacer en diciembre">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+/* personality: cálido · travieso · cómplice (warm, mischievous, intimately playful) */
+
+:root{
+  --paper: #FBF3EA;
+  --paper-deep: #F3E7D8;
+  --surface: #FFFCF7;
+  --ink: #2A1A1C;
+  --ink-soft: #5C4448;
+  --muted: #8C7368;
+  --line: #E3D2BE;
+
+  --raspberry: oklch(0.52 0.19 16);
+  --raspberry-deep: oklch(0.40 0.17 14);
+  --raspberry-weak: oklch(0.93 0.05 16);
+  --jade: oklch(0.74 0.10 165);
+  --jade-deep: oklch(0.46 0.08 165);
+  --gold: oklch(0.78 0.14 80);
+  --gold-deep: oklch(0.55 0.13 70);
+  --ember: oklch(0.62 0.19 38);
+  --ember-deep: oklch(0.47 0.18 30);
+
+  --font-display: 'Fraunces', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-hand: 'Caveat', cursive;
+
+  --text-xs: 0.8rem;
+  --text-sm: 0.925rem;
+  --text-base: 1.05rem;
+  --text-lg: 1.3rem;
+  --text-xl: 1.7rem;
+  --text-2xl: clamp(2rem, 4vw, 2.8rem);
+  --text-display: clamp(3.2rem, 11vw, 8.5rem);
+
+  --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem;
+  --space-4: 1rem; --space-6: 1.5rem; --space-8: 2rem;
+  --space-12: 3rem; --space-16: 4rem; --space-24: 6rem; --space-32: 8rem;
+
+  --radius-sm: 0.4rem;
+  --radius: 0.9rem;
+  --radius-lg: 1.4rem;
+
+  --shadow: 0 10px 30px oklch(0.3 0.08 16 / 0.10), 0 2px 6px oklch(0.3 0.08 16 / 0.08);
+  --shadow-lg: 0 24px 60px oklch(0.3 0.08 16 / 0.16);
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-fast: 150ms;
+  --dur: 280ms;
+  --dur-slow: 520ms;
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-size:var(--text-base);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  font-feature-settings:"kern","liga";
+  overflow-x:hidden;
+}
+body.locked{ overflow:hidden; height:100vh; }
+
+body::before{
+  content:"";
+  position:fixed; inset:0;
+  background-image:
+    radial-gradient(oklch(0.6 0.1 16 / 0.05) 1px, transparent 1.4px);
+  background-size: 22px 22px;
+  pointer-events:none;
+  z-index:0;
+}
+
+::selection{ background:var(--raspberry); color:var(--surface); }
+a{color:var(--raspberry-deep);}
+:focus-visible{ outline:2.5px solid var(--raspberry); outline-offset:3px; border-radius:4px; }
+button{ font-family:inherit; }
+
+.wrap{
+  max-width:1180px;
+  margin:0 auto;
+  padding-inline: clamp(1.25rem, 5vw, 3.5rem);
+  position:relative;
+  z-index:1;
+}
+
+h1,h2,h3{ font-family:var(--font-display); margin:0; }
+
+.paw{ width:1em; height:1em; display:inline-block; vertical-align:-0.12em; }
+
+/* ================= LOCK GATE ================= */
+.gate{
+  position:fixed; inset:0; z-index:50;
+  display:flex; align-items:center; justify-content:center;
+  background:
+    radial-gradient(circle at 18% 20%, oklch(0.65 0.15 16/0.18), transparent 45%),
+    radial-gradient(circle at 85% 80%, oklch(0.7 0.1 165/0.16), transparent 45%),
+    var(--paper);
+  padding: var(--space-6);
+  transition: opacity var(--dur-slow) var(--ease-out), visibility var(--dur-slow);
+}
+.gate.is-hidden{ opacity:0; visibility:hidden; pointer-events:none; }
+.gate-card{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-lg);
+  padding: var(--space-12) var(--space-8);
+  max-width:380px;
+  width:100%;
+  text-align:center;
+  position:relative;
+  transform:rotate(-0.6deg);
+}
+.gate-card::after{
+  content:"";
+  position:absolute; top:-13px; left:50%;
+  transform:translateX(-50%) rotate(8deg);
+  width:30px; height:30px; border-radius:50% 50% 50% 4px;
+  background:var(--raspberry);
+  box-shadow:0 4px 10px oklch(0.3 0.08 16/0.35);
+}
+.gate-mark{ width:44px; height:44px; color:var(--raspberry); display:block; margin:0 auto var(--space-3); }
+.gate-card h2{ font-size:var(--text-xl); font-weight:600; }
+.gate-card p{ color:var(--ink-soft); font-size:var(--text-sm); margin:var(--space-3) 0 var(--space-6); }
+.gate-input{
+  width:100%;
+  font-family:var(--font-body);
+  font-size:var(--text-base);
+  text-align:center;
+  padding:var(--space-3) var(--space-4);
+  border-radius:var(--radius-sm);
+  border:1.5px solid var(--line);
+  background:var(--paper);
+  color:var(--ink);
+  transition:border-color var(--dur-fast) var(--ease-out);
+}
+.gate-input:focus{ border-color:var(--raspberry); outline:none; }
+.gate-btn{
+  margin-top:var(--space-4);
+  width:100%;
+  background:var(--raspberry);
+  color:var(--surface);
+  border:none;
+  font-weight:600;
+  font-size:var(--text-sm);
+  padding:var(--space-3) var(--space-4);
+  border-radius:var(--radius-sm);
+  cursor:pointer;
+  transition:transform var(--dur-fast) var(--ease-spring), background var(--dur-fast);
+}
+.gate-btn:hover{ background:var(--raspberry-deep); transform:translateY(-1px); }
+.gate-btn:active{ transform:scale(0.97); }
+.gate-hint{
+  margin-top:var(--space-5);
+  font-size:var(--text-xs);
+  color:var(--muted);
+  cursor:pointer;
+  text-decoration:underline dotted;
+  display:inline-block;
+}
+.gate-error{
+  margin-top:var(--space-3);
+  font-size:var(--text-xs);
+  color:var(--ember-deep);
+  font-weight:600;
+  min-height:1em;
+}
+.gate-error.shake{ animation:shake-no 0.4s var(--ease-out); }
+@keyframes shake-no{ 0%,100%{transform:translateX(0);} 25%{transform:translateX(-6px);} 75%{transform:translateX(6px);} }
+
+main{ filter:none; transition:filter var(--dur-slow) var(--ease-out); }
+body.locked main{ filter:blur(14px); user-select:none; }
+
+/* -------- top mark -------- */
+.from-tag{
+  display:inline-block;
+  padding-top: var(--space-6);
+  font-family:var(--font-hand);
+  font-size:1.5rem;
+  color:var(--raspberry-deep);
+  transform:rotate(-1.5deg);
+}
+
+/* ================= HERO ================= */
+.hero{ position:relative; padding-top: clamp(2rem, 6vw, 4rem); padding-bottom: clamp(3rem, 8vw, 6rem); }
+.hero-grid{ display:grid; grid-template-columns: 7fr 5fr; gap: var(--space-8); align-items:end; }
+.hero-kicker{
+  font-family:var(--font-hand);
+  font-size:1.6rem;
+  color:var(--raspberry-deep);
+  margin-bottom: var(--space-2);
+  display:inline-flex; align-items:center; gap:0.4em;
+  transform:rotate(-2deg);
+}
+.hero h1{ font-size:var(--text-display); font-weight:500; line-height:0.96; letter-spacing:-0.02em; color:var(--ink); }
+.hero h1 em{ font-style:italic; font-weight:600; color:var(--raspberry-deep); }
+.hero-sub{ margin-top:var(--space-6); max-width:46ch; font-size:var(--text-lg); color:var(--ink-soft); }
+.hero-sub b{ color:var(--ink); font-weight:600; }
+
+.countdown-card{
+  justify-self:end;
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-lg);
+  padding:var(--space-8) var(--space-6);
+  width:100%; max-width:340px;
+  position:relative;
+  transform:rotate(1.2deg);
+}
+.countdown-card::after{
+  content:"";
+  position:absolute; top:-14px; left:50%;
+  transform:translateX(-50%) rotate(-6deg);
+  width:34px; height:34px;
+  background:var(--raspberry);
+  border-radius:50% 50% 50% 4px;
+  box-shadow:0 4px 10px oklch(0.3 0.08 16/0.35);
+}
+.countdown-label{ text-align:center; font-size:var(--text-xs); text-transform:uppercase; letter-spacing:0.14em; color:var(--muted); font-weight:600; margin-bottom:var(--space-4); }
+.countdown-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:var(--space-2); }
+.countdown-unit{ text-align:center; }
+.countdown-num{ font-family:var(--font-display); font-variant-numeric: tabular-nums; font-size:clamp(1.6rem, 4vw, 2.1rem); font-weight:600; color:var(--raspberry-deep); line-height:1; }
+.countdown-word{ margin-top:4px; font-size:0.68rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--muted); }
+.countdown-foot{ margin-top:var(--space-5); text-align:center; font-size:var(--text-sm); color:var(--ink-soft); border-top:1px dashed var(--line); padding-top:var(--space-4); }
+.countdown-foot strong{ color:var(--jade-deep); }
+
+/* ================= SECTION HEADERS ================= */
+.section-head{ display:flex; align-items:flex-end; justify-content:space-between; gap:var(--space-6); margin-bottom:var(--space-12); flex-wrap:wrap; }
+.section-head h2{ font-size:var(--text-2xl); font-weight:500; letter-spacing:-0.01em; max-width:20ch; }
+.section-head h2 em{ font-style:italic; color:var(--raspberry-deep); font-weight:600; }
+.section-head p{ max-width:32ch; color:var(--ink-soft); font-size:var(--text-sm); margin:0; }
+.eyebrow{ font-size:var(--text-xs); text-transform:uppercase; letter-spacing:0.14em; font-weight:700; color:var(--jade-deep); display:flex; align-items:center; gap:0.5em; margin-bottom:var(--space-3); }
+.eyebrow::before{ content:""; width:22px; height:1px; background:var(--jade-deep); }
+
+/* ================= CORKBOARD / PINNED LIST ================= */
+.board-section{ padding-block: var(--space-16) var(--space-24); position:relative; }
+.board{
+  position:relative;
+  background:
+    linear-gradient(0deg, oklch(0.45 0.06 50/0.06) 1px, transparent 1px) 0 0/100% 38px,
+    var(--paper-deep);
+  border-radius:var(--radius-lg);
+  border:1px solid var(--line);
+  padding: clamp(1.5rem, 4vw, 3.5rem);
+  box-shadow: inset 0 2px 18px oklch(0.4 0.08 40/0.08);
+}
+.pinned-banner{
+  display:inline-flex; align-items:center; gap:var(--space-2);
+  background:var(--ink); color:var(--paper);
+  font-family:var(--font-body); font-weight:600; font-size:var(--text-xs);
+  letter-spacing:0.06em; text-transform:uppercase;
+  padding:0.5em 0.9em 0.5em 0.7em; border-radius:999px;
+  margin-bottom:var(--space-8);
+}
+.pinned-banner svg{ width:13px; height:13px; }
+
+.cards{ display:grid; grid-template-columns:repeat(6,1fr); gap:var(--space-6); }
+
+.note{
+  position:relative;
+  background:var(--surface);
+  border-radius:var(--radius-sm);
+  padding:var(--space-6) var(--space-5) var(--space-5);
+  box-shadow:var(--shadow);
+  cursor:pointer;
+  transition:transform var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out);
+  border:1px solid oklch(1 0 0/0.6);
+}
+.note:hover{ transform:translateY(-5px) rotate(var(--tilt,0deg)); box-shadow:var(--shadow-lg); }
+.note:active{ transform:translateY(-1px) scale(0.99); }
+.note::before{
+  content:"";
+  position:absolute; top:-11px; left:50%;
+  transform:translateX(-50%);
+  width:22px; height:22px; border-radius:50%;
+  background: radial-gradient(circle at 35% 30%, oklch(0.7 0.18 16), var(--raspberry-deep) 75%);
+  box-shadow:0 3px 6px oklch(0.3 0.1 16/0.45);
+}
+
+.note-index{ font-family:var(--font-hand); font-size:1.5rem; color:var(--jade-deep); line-height:1; }
+.note-text{ margin-top:var(--space-2); font-family:var(--font-display); font-size:var(--text-lg); font-weight:500; line-height:1.28; color:var(--ink); }
+.note-tag{ display:inline-block; margin-top:var(--space-4); font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase; font-weight:700; color:var(--muted); }
+
+.note-check{
+  position:absolute; top:var(--space-4); right:var(--space-4);
+  width:26px; height:26px; border-radius:50%;
+  border:1.5px solid var(--line);
+  display:flex; align-items:center; justify-content:center;
+  transition:all var(--dur) var(--ease-spring);
+  background:var(--surface);
+}
+.note-check svg{ width:14px; height:14px; stroke:var(--surface); opacity:0; transform:scale(0.5); transition:all var(--dur) var(--ease-spring); }
+.note.done{ background:var(--raspberry-weak); }
+.note.done .note-text{ color:var(--ink-soft); text-decoration:line-through; text-decoration-color:var(--raspberry); text-decoration-thickness:1.5px; }
+.note.done .note-check{ background:var(--raspberry); border-color:var(--raspberry); transform:scale(1.05); }
+.note.done .note-check svg{ opacity:1; transform:scale(1); }
+
+.note-remove{
+  position:absolute; top:var(--space-4); left:var(--space-4);
+  width:22px; height:22px; border-radius:50%;
+  border:none; background:transparent; color:var(--muted);
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; opacity:0.5;
+  transition:opacity var(--dur-fast), color var(--dur-fast);
+}
+.note-remove:hover{ opacity:1; color:var(--ember-deep); }
+.note-remove svg{ width:13px; height:13px; }
+
+/* mood chips */
+.mood-row{ display:flex; gap:var(--space-2); margin-top:var(--space-4); }
+.mood-chip{
+  width:30px; height:30px; border-radius:50%;
+  border:1.5px solid var(--line);
+  background:var(--surface);
+  display:flex; align-items:center; justify-content:center;
+  font-size:0.95rem; line-height:1;
+  cursor:pointer;
+  transition:transform var(--dur-fast) var(--ease-spring), border-color var(--dur-fast), background var(--dur-fast);
+}
+.mood-chip:hover{ transform:translateY(-2px); }
+.mood-chip .mood-emoji{ display:inline-block; }
+
+.mood-chip[data-mood="amor"].active{ background:var(--raspberry-weak); border-color:var(--raspberry); }
+.mood-chip[data-mood="fuego"].active{ background:oklch(0.93 0.06 38); border-color:var(--ember); }
+.mood-chip[data-mood="alcohol"].active{ background:oklch(0.95 0.05 80); border-color:var(--gold-deep); }
+.mood-chip[data-mood="tranqui"].active{ background:oklch(0.94 0.04 165); border-color:var(--jade-deep); }
+
+.mood-chip[data-mood="amor"].active .mood-emoji{ animation: pulse-heart 1.1s ease-in-out infinite; }
+.mood-chip[data-mood="fuego"].active .mood-emoji{ animation: flicker-flame 1.3s ease-in-out infinite; }
+.mood-chip[data-mood="alcohol"].active .mood-emoji{ animation: fizz-bubble 1.6s ease-in-out infinite; }
+.mood-chip[data-mood="tranqui"].active .mood-emoji{ animation: drift-moon 3s ease-in-out infinite; }
+
+@keyframes pulse-heart{ 0%,100%{ transform:scale(1); } 30%{ transform:scale(1.22); } 50%{ transform:scale(0.96); } }
+@keyframes flicker-flame{ 0%,100%{ transform:rotate(-4deg) scale(1); } 25%{ transform:rotate(3deg) scale(1.08); } 50%{ transform:rotate(-2deg) scale(0.95); } 75%{ transform:rotate(4deg) scale(1.05); } }
+@keyframes fizz-bubble{ 0%,100%{ transform:translateY(0) scale(1); } 50%{ transform:translateY(-3px) scale(1.1); } }
+@keyframes drift-moon{ 0%,100%{ transform:translateY(0) rotate(0deg); } 50%{ transform:translateY(-2px) rotate(8deg); } }
+
+.note[data-mood="amor"]{ box-shadow:var(--shadow), 0 0 0 2px oklch(0.6 0.18 16/0.18); }
+.note[data-mood="fuego"]{ box-shadow:var(--shadow), 0 0 0 2px oklch(0.62 0.19 38/0.22); }
+.note[data-mood="alcohol"]{ box-shadow:var(--shadow), 0 0 0 2px oklch(0.78 0.14 80/0.25); }
+.note[data-mood="tranqui"]{ box-shadow:var(--shadow), 0 0 0 2px oklch(0.74 0.1 165/0.22); }
+
+.note.custom{ border-style:dashed; }
+
+.note:nth-of-type(6n+1){ grid-column: span 3; --tilt:-1.1deg; transform:rotate(-1.1deg); }
+.note:nth-of-type(6n+2){ grid-column: span 3; --tilt:0.9deg; transform:rotate(0.9deg); }
+.note:nth-of-type(6n+3){ grid-column: span 2; --tilt:1.4deg; transform:rotate(1.4deg); }
+.note:nth-of-type(6n+4){ grid-column: span 4; --tilt:-0.6deg; transform:rotate(-0.6deg); }
+.note:nth-of-type(6n+5){ grid-column: span 4; --tilt:0.7deg; transform:rotate(0.7deg); }
+.note:nth-of-type(6n+0){ grid-column: span 2; --tilt:-1.6deg; transform:rotate(-1.6deg); }
+.note:hover{ transform:translateY(-5px) rotate(var(--tilt)); }
+
+.board-foot{ margin-top:var(--space-8); display:flex; align-items:center; justify-content:space-between; gap:var(--space-4); flex-wrap:wrap; font-size:var(--text-sm); color:var(--ink-soft); }
+.progress-track{ flex:1 1 220px; height:8px; border-radius:999px; background:var(--line); overflow:hidden; }
+.progress-fill{ height:100%; width:0%; background:linear-gradient(90deg, var(--jade), var(--raspberry)); border-radius:999px; transition:width var(--dur-slow) var(--ease-out); }
+
+/* -------- add item -------- */
+.add-wrap{ margin-top:var(--space-8); border-top:1px dashed var(--line); padding-top:var(--space-6); }
+.add-toggle{
+  background:none; border:1.5px dashed var(--line); color:var(--ink-soft);
+  font-weight:600; font-size:var(--text-sm);
+  padding:var(--space-3) var(--space-5); border-radius:999px; cursor:pointer;
+  transition:border-color var(--dur-fast), color var(--dur-fast), transform var(--dur-fast) var(--ease-spring);
+}
+.add-toggle:hover{ border-color:var(--raspberry); color:var(--raspberry-deep); transform:translateY(-1px); }
+.add-form{
+  margin-top:var(--space-5);
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:var(--space-6);
+  display:none;
+}
+.add-form.open{ display:block; }
+.add-form input[type=text]{
+  width:100%; font-family:var(--font-display); font-size:var(--text-lg);
+  border:none; border-bottom:1.5px solid var(--line);
+  padding:var(--space-2) 0; background:transparent; color:var(--ink);
+}
+.add-form input[type=text]:focus{ outline:none; border-color:var(--raspberry); }
+.add-form-row{ display:flex; align-items:center; justify-content:space-between; gap:var(--space-4); margin-top:var(--space-5); flex-wrap:wrap; }
+.add-form-row label{ font-size:var(--text-xs); color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; font-weight:700; margin-right:var(--space-2); }
+.add-submit{
+  background:var(--raspberry); color:var(--surface); border:none; font-weight:600;
+  font-size:var(--text-sm); padding:var(--space-3) var(--space-6); border-radius:999px; cursor:pointer;
+  transition:background var(--dur-fast), transform var(--dur-fast) var(--ease-spring);
+}
+.add-submit:hover{ background:var(--raspberry-deep); transform:translateY(-1px); }
+.add-submit:active{ transform:scale(0.97); }
+.mood-picker{ display:flex; gap:var(--space-2); align-items:center; }
+
+/* ================= CLOSING ================= */
+.closing{ padding-block: var(--space-16) var(--space-32); position:relative; }
+.closing-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:var(--space-16); align-items:center; }
+.closing-quote{ font-family:var(--font-display); font-style:italic; font-weight:500; font-size:clamp(1.6rem, 3.2vw, 2.4rem); line-height:1.22; color:var(--ink); }
+.closing-quote .accent{ color:var(--raspberry-deep); font-weight:600; }
+.signature{ margin-top:var(--space-8); font-family:var(--font-hand); font-size:2.4rem; color:var(--raspberry-deep); transform:rotate(-2deg); display:inline-block; }
+.closing-meta{ border-left:1px solid var(--line); padding-left:var(--space-8); }
+.closing-meta p{ color:var(--ink-soft); font-size:var(--text-sm); margin:0 0 var(--space-4); }
+.ps-note{ margin-top:var(--space-5) !important; font-family:var(--font-hand); font-size:1.2rem; color:var(--muted); }
+.tickets{ display:flex; flex-direction:column; gap:var(--space-3); }
+.ticket{ display:flex; justify-content:space-between; align-items:center; border:1px dashed var(--line); border-radius:var(--radius-sm); padding:var(--space-3) var(--space-4); font-size:var(--text-sm); }
+.ticket b{ font-family:var(--font-display); font-weight:600; }
+
+footer{ text-align:center; font-size:var(--text-xs); color:var(--muted); padding-block:var(--space-8); border-top:1px solid var(--line); }
+
+/* ================= responsive ================= */
+@media (max-width: 900px){
+  .hero-grid{ grid-template-columns:1fr; }
+  .countdown-card{ justify-self:start; transform:none; margin-top:var(--space-8); }
+  .cards{ grid-template-columns:repeat(2,1fr); }
+  .note:nth-of-type(6n+1),.note:nth-of-type(6n+2),.note:nth-of-type(6n+4),.note:nth-of-type(6n+5){ grid-column:span 2; }
+  .note:nth-of-type(6n+3),.note:nth-of-type(6n+0){ grid-column:span 1; }
+  .closing-grid{ grid-template-columns:1fr; gap:var(--space-10); }
+  .closing-meta{ border-left:none; padding-left:0; border-top:1px solid var(--line); padding-top:var(--space-6); }
+}
+@media (max-width: 560px){
+  .cards{ grid-template-columns:1fr; }
+  .note{ grid-column:span 1 !important; transform:rotate(0deg) !important; padding-top:var(--space-8); }
+  .note:hover{ transform:translateY(-3px) !important; }
+  .note-remove{ top:var(--space-3); left:var(--space-3); }
+  .note-check{ top:var(--space-3); right:var(--space-3); }
+
+  .gate-card{ padding:var(--space-8) var(--space-5); }
+  .gate{ padding:var(--space-4); }
+
+  .ticket{ flex-direction:column; align-items:flex-start; gap:4px; }
+  .ticket span{ font-size:var(--text-xs); text-transform:uppercase; letter-spacing:0.06em; color:var(--muted); }
+
+  .add-toggle{ display:block; width:100%; text-align:center; border-radius:var(--radius); }
+  .add-form-row{ flex-direction:column; align-items:stretch; gap:var(--space-4); }
+  .add-form-row .mood-picker{ justify-content:center; }
+  .add-submit{ width:100%; }
+
+  .signature{ font-size:1.9rem; }
+  .closing-quote{ line-height:1.3; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{ transition-duration:0.01ms !important; animation-duration:0.01ms !important; }
+  html{ scroll-behavior:auto; }
+}
+</style>
+</head>
+<body class="locked">
+
+<div class="gate" id="gate">
+  <div class="gate-card">
+    <svg class="gate-mark paw" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <circle cx="7" cy="8" r="2.1"/><circle cx="12" cy="6" r="2.3"/><circle cx="17" cy="8" r="2.1"/>
+      <ellipse cx="12" cy="14" rx="5.6" ry="4.6"/>
+    </svg>
+    <h2>Oye, esto es solo para ti.</h2>
+    <p>Pista: el nombre de tu hermanito (el que casi muerde a todos, jaja).</p>
+    <input type="text" id="gate-input" class="gate-input" placeholder="La palabra secreta" autocomplete="off">
+    <div class="gate-error" id="gate-error"></div>
+    <button class="gate-btn" id="gate-btn">Entrar</button>
+  </div>
+</div>
+
+<main>
+<div class="wrap">
+  <span class="from-tag">De Luka, para mi Reini</span>
+</div>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="hero-kicker">
+        <svg class="paw" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <circle cx="7" cy="8" r="2.1"/><circle cx="12" cy="6" r="2.3"/><circle cx="17" cy="8" r="2.1"/>
+          <ellipse cx="12" cy="14" rx="5.6" ry="4.6"/>
+        </svg>
+        Holaaa, mibida —
+      </div>
+      <h1>La lista que<br>te prometí, <em>al fin.</em></h1>
+      <p class="hero-sub">Ok, sí, me tardé como tres meses en mandártela, jajaja. Perdón, amorcito. Dije «te la mando en la noche» y, obvio, no lo hice. Pero aquí está, completita, tal cual quedó esa madrugada — fijada, en mayúsculas, sin que se nos olvide ni una.</p>
+    </div>
+
+    <div class="countdown-card">
+      <div class="countdown-label">Faltan para diciembre</div>
+      <div class="countdown-grid" id="countdown" aria-live="polite">
+        <div class="countdown-unit"><div class="countdown-num" id="cd-days">00</div><div class="countdown-word">Días</div></div>
+        <div class="countdown-unit"><div class="countdown-num" id="cd-hours">00</div><div class="countdown-word">Horas</div></div>
+        <div class="countdown-unit"><div class="countdown-num" id="cd-mins">00</div><div class="countdown-word">Min</div></div>
+        <div class="countdown-unit"><div class="countdown-num" id="cd-secs">00</div><div class="countdown-word">Seg</div></div>
+      </div>
+      <div class="countdown-foot">Arequipa nos espera, mibida. <strong>Reencuentro al fin.</strong></div>
+    </div>
+  </div>
+</section>
+
+<section class="board-section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2>Seis cositas, <em>cero excusas.</em></h2>
+      </div>
+      <p>La edité un montón de veces esa madrugada hasta que quedó bien. Tócalas cuando las cumplamos, y ponle su mood.</p>
+    </div>
+
+    <div class="board">
+      <div class="pinned-banner">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 17v5"/><path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16h14v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z"/></svg>
+        Oficial, no se borra
+      </div>
+
+      <div class="cards" id="cards"></div>
+
+      <div class="board-foot">
+        <span id="progress-label">0 cumplidas</span>
+        <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+      </div>
+
+      <div class="add-wrap">
+        <button class="add-toggle" id="add-toggle" type="button">+ Agregar otra cosita a la lista</button>
+        <form class="add-form" id="add-form">
+          <input type="text" id="add-text" placeholder="¿Qué otra cosa quieres que hagamos?" maxlength="140" required>
+          <div class="add-form-row">
+            <div class="mood-picker">
+              <label>Mood</label>
+              <button type="button" class="mood-chip" data-mood="amor" title="Corazoncito"><span class="mood-emoji">💗</span></button>
+              <button type="button" class="mood-chip" data-mood="fuego" title="Fueguito"><span class="mood-emoji">🔥</span></button>
+              <button type="button" class="mood-chip" data-mood="alcohol" title="Con traguito"><span class="mood-emoji">🥂</span></button>
+              <button type="button" class="mood-chip" data-mood="tranqui" title="Plan tranqui"><span class="mood-emoji">🌙</span></button>
+            </div>
+            <button type="submit" class="add-submit">Fijarlo</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="wrap closing-grid">
+    <div>
+      <p class="closing-quote">«En diciembreeeee… reencuentrooo». <span class="accent">Lo dijiste tú</span>, y desde ahí no se me ha ido de la cabeza.</p>
+      <span class="signature">Te espero, mibida</span>
+    </div>
+    <div class="closing-meta">
+      <p>Mientras tanto, esto es lo que ya sabemos:</p>
+      <div class="tickets">
+        <div class="ticket"><span>De</span><b>Lima, directo a tus brazos</b></div>
+        <div class="ticket"><span>Cuándo</span><b>diciembre, que se apure</b></div>
+        <div class="ticket"><span>Con quién</span><b>Luka y Reini, los de siempre</b></div>
+      </div>
+      <p class="ps-note">Ps: te quiero más de lo que demuestro aquí, pero ya sabes cómo soy.</p>
+    </div>
+  </div>
+</section>
+
+<footer>Hecho de madrugada, con la misma dedicación (y la misma falta de sueño) que la lista original · para mi Reini.</footer>
+</main>
+
+<script>
+(function(){
+  /* ---------- gate ---------- */
+  const PASSWORD = 'benja';
+  const GATE_KEY = 'reini-gate-ok';
+  const gate = document.getElementById('gate');
+  const gateInput = document.getElementById('gate-input');
+  const gateBtn = document.getElementById('gate-btn');
+  const gateError = document.getElementById('gate-error');
+
+  function unlock(){
+    document.body.classList.remove('locked');
+    gate.classList.add('is-hidden');
+  }
+  function tryUnlock(){
+    const val = (gateInput.value || '').trim().toLowerCase();
+    if (val === PASSWORD){
+      localStorage.setItem(GATE_KEY, '1');
+      unlock();
+    } else {
+      gateError.textContent = 'Noo, esa no es. Jajaja, intenta otra vez.';
+      gateError.classList.remove('shake');
+      requestAnimationFrame(()=> gateError.classList.add('shake'));
+    }
+  }
+  if (localStorage.getItem(GATE_KEY) === '1') unlock();
+  gateBtn.addEventListener('click', tryUnlock);
+  gateInput.addEventListener('keydown', e => { if (e.key === 'Enter') tryUnlock(); });
+
+  /* ---------- countdown ---------- */
+  const TARGET = new Date('2026-12-01T00:00:00'); // ajusta si tienen fecha exacta
+  const els = {
+    days: document.getElementById('cd-days'),
+    hours: document.getElementById('cd-hours'),
+    mins: document.getElementById('cd-mins'),
+    secs: document.getElementById('cd-secs'),
+  };
+  function tick(){
+    const diff = Math.max(0, TARGET - new Date());
+    els.days.textContent = String(Math.floor(diff / 86400000)).padStart(2,'0');
+    els.hours.textContent = String(Math.floor((diff % 86400000) / 3600000)).padStart(2,'0');
+    els.mins.textContent = String(Math.floor((diff % 3600000) / 60000)).padStart(2,'0');
+    els.secs.textContent = String(Math.floor((diff % 60000) / 1000)).padStart(2,'0');
+  }
+  tick(); setInterval(tick, 1000);
+
+  /* ---------- list data ---------- */
+  const STORAGE_KEY = 'reini-lista-diciembre-v2';
+  const BASE_ITEMS = [
+    { id:'b1', text:'Vestir a Fabián de maid, sin polo — pq tú lo pediste y yo no sé decirte que no :v', note:'Lo prometiste tú primero, ahora ya no te me puedes hacer la loca, jajaja', custom:false },
+    { id:'b2', text:'Salir de compras y cocinarte mamis en tu casa, aunque sea lo único que sepa hacer bien, jajaja', note:'Tu plan ideal: comer rico y no salir para nada de la casa', custom:false },
+    { id:'b3', text:'Discoteca hasta el día siguiente, bailar pegaditos y emborracharnos hasta olvidar — romper un baño, opcional', note:'Una sola vez en la vida hay que hacer alguna locura random juntos', custom:false },
+    { id:'b4', text:"Dibujar algo juntos y firmarlo con un besito, pa' que quede una prueba de que esto fue real y no solo videollamada", note:'Algo físico, de papel, que pruebe que esto no fue solo por WhatsApp', custom:false },
+    { id:'b5', text:'Dormir juntitos, bien apapachados, viendo una peli — sin que se corte la llamada, porque ya no va a ser llamada', note:'El plan que más me gusta a mí, aunque tú prefieras la disco', custom:false },
+    { id:'b6', text:'Trepar un cerro, no morir en el intento, y acampar — ver las estrellas contigo de verdad y no por la pantalla', note:'Tu tipo de plan, no el mío, pero ahí voy contigo igual, fighting', custom:false },
+  ];
+  const MOODS = {
+    amor:   { emoji:'💗', label:'Corazoncito' },
+    fuego:  { emoji:'🔥', label:'Fueguito' },
+    alcohol:{ emoji:'🥂', label:'Con traguito' },
+    tranqui:{ emoji:'🌙', label:'Plan tranqui' },
+  };
+
+  function loadState(){
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || { items:{}, custom:[] }; }
+    catch(e){ return { items:{}, custom:[] }; }
+  }
+  function saveState(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+
+  let state = loadState();
+  if (!state.items) state.items = {};
+  if (!state.custom) state.custom = [];
+
+  const cardsEl = document.getElementById('cards');
+  const fill = document.getElementById('progress-fill');
+  const label = document.getElementById('progress-label');
+
+  function allItems(){ return BASE_ITEMS.concat(state.custom); }
+
+  function checkSvg(){
+    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+  }
+  function removeSvg(){
+    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>';
+  }
+
+  function render(){
+    const items = allItems();
+    cardsEl.innerHTML = '';
+    items.forEach((item, i) => {
+      const st = state.items[item.id] || {};
+      const note = document.createElement('article');
+      note.className = 'note' + (st.done ? ' done' : '') + (item.custom ? ' custom' : '');
+      if (st.mood) note.dataset.mood = st.mood;
+      note.dataset.id = item.id;
+      note.setAttribute('role','checkbox');
+      note.setAttribute('tabindex','0');
+      note.setAttribute('aria-checked', st.done ? 'true' : 'false');
+
+      let html = '';
+      if (item.custom) html += '<button class="note-remove" data-action="remove" aria-label="quitar">' + removeSvg() + '</button>';
+      html += '<div class="note-check">' + checkSvg() + '</div>';
+      html += '<div class="note-index">' + String(i+1).padStart(2,'0') + '</div>';
+      html += '<div class="note-text">' + item.text + '</div>';
+      html += '<span class="note-tag">' + item.note + '</span>';
+      html += '<div class="mood-row">' + Object.keys(MOODS).map(m =>
+        '<button type="button" class="mood-chip' + (st.mood===m ? ' active':'') + '" data-mood="' + m + '" data-action="mood" title="' + MOODS[m].label + '"><span class="mood-emoji">' + MOODS[m].emoji + '</span></button>'
+      ).join('') + '</div>';
+
+      note.innerHTML = html;
+      cardsEl.appendChild(note);
+    });
+    refreshProgress();
+  }
+
+  function refreshProgress(){
+    const items = allItems();
+    const done = items.filter(it => (state.items[it.id]||{}).done).length;
+    fill.style.width = (items.length ? done / items.length * 100 : 0) + '%';
+    label.textContent = done + ' de ' + items.length + ' cumplidas';
+  }
+
+  cardsEl.addEventListener('click', e => {
+    const note = e.target.closest('.note');
+    if (!note) return;
+    const id = note.dataset.id;
+    state.items[id] = state.items[id] || {};
+
+    const moodBtn = e.target.closest('[data-action="mood"]');
+    const removeBtn = e.target.closest('[data-action="remove"]');
+
+    if (removeBtn){
+      e.stopPropagation();
+      state.custom = state.custom.filter(c => c.id !== id);
+      delete state.items[id];
+      saveState();
+      render();
+      return;
+    }
+    if (moodBtn){
+      e.stopPropagation();
+      const mood = moodBtn.dataset.mood;
+      state.items[id].mood = state.items[id].mood === mood ? null : mood;
+      saveState();
+      render();
+      return;
+    }
+    state.items[id].done = !state.items[id].done;
+    saveState();
+    render();
+  });
+  cardsEl.addEventListener('keydown', e => {
+    const note = e.target.closest('.note');
+    if (!note) return;
+    if (e.target.closest('[data-action]')) return;
+    if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); note.click(); }
+  });
+
+  /* ---------- add form ---------- */
+  const addToggle = document.getElementById('add-toggle');
+  const addForm = document.getElementById('add-form');
+  const addText = document.getElementById('add-text');
+  let pickedMood = null;
+
+  addToggle.addEventListener('click', () => {
+    addForm.classList.toggle('open');
+    if (addForm.classList.contains('open')) addText.focus();
+  });
+
+  addForm.querySelectorAll('.mood-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const mood = chip.dataset.mood;
+      pickedMood = pickedMood === mood ? null : mood;
+      addForm.querySelectorAll('.mood-chip').forEach(c => c.classList.toggle('active', c.dataset.mood === pickedMood));
+    });
+  });
+
+  addForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const text = addText.value.trim();
+    if (!text) return;
+    const id = 'c' + Date.now();
+    state.custom.push({ id, text, note:'Se nos ocurrió después, pero cuenta igual', custom:true });
+    state.items[id] = { done:false, mood: pickedMood };
+    saveState();
+    addText.value = '';
+    pickedMood = null;
+    addForm.querySelectorAll('.mood-chip').forEach(c => c.classList.remove('active'));
+    addForm.classList.remove('open');
+    render();
+  });
+
+  render();
+})();
+</script>
+
+</body>
+</html>
