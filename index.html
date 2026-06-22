@@ -801,23 +801,22 @@ footer{ text-align:center; font-size:var(--text-xs); color:var(--muted); padding
     render();
   });
 
+  render(); // muestra de inmediato con lo que haya en local, no espera a la red
+
   if (remoteDoc && remoteOnSnapshot){
-    const snap = await remoteGetDoc(remoteDoc);
-    if (!snap.exists()){
-      await remoteSetDoc(remoteDoc, state).catch(err => console.warn('No se pudo crear el documento inicial', err));
-    }
+    let firstSnap = true;
     remoteOnSnapshot(remoteDoc, snap => {
       if (snap.exists()){
         state = normalize(snap.data());
         localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
         render();
+      } else if (firstSnap){
+        remoteSetDoc(remoteDoc, state).catch(err => console.warn('No se pudo crear el documento inicial', err));
       }
+      firstSnap = false;
     }, err => {
       console.warn('Se perdió la conexión con Firestore, sigue local.', err);
-      render();
     });
-  } else {
-    render();
   }
 })();
 </script>
