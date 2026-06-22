@@ -570,8 +570,38 @@ footer{ text-align:center; font-size:var(--text-xs); color:var(--muted); padding
 <footer>Hecho de madrugada, con la misma dedicación (y la misma falta de sueño) que la lista original · para mi Reini.</footer>
 </main>
 
-<script>
-(function(){
+<script type="module">
+(async function(){
+  /* ---------- firebase (opcional) ----------
+     Pega aquí tu config de Firebase (Project settings > Tus apps > Web).
+     Si la dejas vacía, la lista sigue funcionando normal, pero local en cada navegador. */
+  const firebaseConfig = {
+    apiKey: "",
+    authDomain: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: "",
+    appId: ""
+  };
+
+  let remoteDoc = null, remoteOnSnapshot = null, remoteSetDoc = null, remoteGetDoc = null;
+  const FIREBASE_ENABLED = !!firebaseConfig.apiKey;
+
+  if (FIREBASE_ENABLED){
+    try {
+      const { initializeApp } = await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js');
+      const { getFirestore, doc, onSnapshot, setDoc, getDoc } = await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js');
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+      remoteDoc = doc(db, 'lista', 'reini-diciembre');
+      remoteOnSnapshot = onSnapshot;
+      remoteSetDoc = setDoc;
+      remoteGetDoc = getDoc;
+    } catch (err){
+      console.warn('No se pudo conectar a Firebase, usando guardado local.', err);
+    }
+  }
+
   /* ---------- gate ---------- */
   const PASSWORD = 'benja';
   const GATE_KEY = 'reini-gate-ok';
@@ -633,15 +663,24 @@ footer{ text-align:center; font-size:var(--text-xs); color:var(--muted); padding
     tranqui:{ emoji:'🌙', label:'Plan tranqui' },
   };
 
-  function loadState(){
+  function loadLocalState(){
     try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || { items:{}, custom:[] }; }
     catch(e){ return { items:{}, custom:[] }; }
   }
-  function saveState(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+  function normalize(s){
+    if (!s.items) s.items = {};
+    if (!s.custom) s.custom = [];
+    return s;
+  }
 
-  let state = loadState();
-  if (!state.items) state.items = {};
-  if (!state.custom) state.custom = [];
+  let state = normalize(loadLocalState());
+
+  function saveState(){
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    if (remoteDoc && remoteSetDoc){
+      remoteSetDoc(remoteDoc, state).catch(err => console.warn('No se pudo sincronizar con Firestore', err));
+    }
+  }
 
   const cardsEl = document.getElementById('cards');
   const fill = document.getElementById('progress-fill');
@@ -762,7 +801,24 @@ footer{ text-align:center; font-size:var(--text-xs); color:var(--muted); padding
     render();
   });
 
-  render();
+  if (remoteDoc && remoteOnSnapshot){
+    const snap = await remoteGetDoc(remoteDoc);
+    if (!snap.exists()){
+      await remoteSetDoc(remoteDoc, state).catch(err => console.warn('No se pudo crear el documento inicial', err));
+    }
+    remoteOnSnapshot(remoteDoc, snap => {
+      if (snap.exists()){
+        state = normalize(snap.data());
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        render();
+      }
+    }, err => {
+      console.warn('Se perdió la conexión con Firestore, sigue local.', err);
+      render();
+    });
+  } else {
+    render();
+  }
 })();
 </script>
 
