@@ -414,7 +414,7 @@ body.locked main{ filter:blur(14px); user-select:none; }
 .signature{ margin-top:var(--space-8); font-family:var(--font-hand); font-size:2.4rem; color:var(--raspberry-deep); transform:rotate(-2deg); display:inline-block; }
 .closing-meta{ border-left:1px solid var(--line); padding-left:var(--space-8); }
 .closing-meta p{ color:var(--ink-soft); font-size:var(--text-sm); margin:0 0 var(--space-4); }
-.ps-note{ margin-top:var(--space-5) !important; font-family:var(--font-hand); font-size:1.2rem; color:var(--muted); }
+.ps-note{ margin-top:var(--space-5) !important; font-family:var(--font-body); font-style:italic; font-size:var(--text-base); line-height:1.5; color:var(--ink-soft); }
 .tickets{ display:flex; flex-direction:column; gap:var(--space-3); }
 .ticket{ display:flex; justify-content:space-between; align-items:center; border:1px dashed var(--line); border-radius:var(--radius-sm); padding:var(--space-3) var(--space-4); font-size:var(--text-sm); }
 .ticket b{ font-family:var(--font-display); font-weight:600; }
@@ -511,7 +511,7 @@ footer{ text-align:center; font-size:var(--text-xs); color:var(--muted); padding
   <div class="wrap">
     <div class="section-head">
       <div>
-        <h2>Seis cositas, <em>cero excusas.</em></h2>
+        <h2>Siete cositas, <em>cero excusas.</em></h2>
       </div>
       <p>Tócalas cuando las cumplamos, y ponle su mood.</p>
     </div>
@@ -562,7 +562,7 @@ footer{ text-align:center; font-size:var(--text-xs); color:var(--muted); padding
         <div class="ticket"><span>Cuándo</span><b>diciembre, que se apure</b></div>
         <div class="ticket"><span>Con quién</span><b>Luka y Reini, los de siempre</b></div>
       </div>
-      <p class="ps-note">Ps: te quiero más de lo que demuestro aquí, pero ya sabes cómo soy.</p>
+      <p class="ps-note">Te extrañooooooooooooooooo, jkasndjakdnam. Ya quiero que sea diciembreeee :''''''3. Te amo mucho, amorcito... perdón por tanta ausencia estos días :'3</p>
     </div>
   </div>
 </section>
@@ -649,12 +649,13 @@ footer{ text-align:center; font-size:var(--text-xs); color:var(--muted); padding
   /* ---------- list data ---------- */
   const STORAGE_KEY = 'reini-lista-diciembre-v2';
   const BASE_ITEMS = [
-    { id:'b1', text:'Vestir a Fabián de maid, sin polo — pq tú lo pediste y yo no sé decirte que no :v', note:'Lo prometiste tú primero, ahora ya no te me puedes hacer la loca, jajaja', custom:false },
-    { id:'b2', text:'Salir de compras y cocinarte mamis en tu casa, aunque sea lo único que sepa hacer bien, jajaja', note:'Tu plan ideal: comer rico y no salir para nada de la casa', custom:false },
-    { id:'b3', text:'Discoteca hasta el día siguiente, bailar pegaditos y emborracharnos hasta olvidar — romper un baño, opcional', note:'Una sola vez en la vida hay que hacer alguna locura random juntos', custom:false },
-    { id:'b4', text:"Dibujar algo juntos y firmarlo con un besito, pa' que quede una prueba de que esto fue real y no solo videollamada", note:'Algo físico, de papel, que pruebe que esto no fue solo por WhatsApp', custom:false },
-    { id:'b5', text:'Dormir juntitos, bien apapachados, viendo una peli — sin que se corte la llamada, porque ya no va a ser llamada', note:'El plan que más me gusta a mí, aunque tú prefieras la disco', custom:false },
-    { id:'b6', text:'Trepar un cerro, no morir en el intento, y acampar — ver las estrellas contigo de verdad y no por la pantalla', note:'Tu tipo de plan, no el mío, pero ahí voy contigo igual, fighting', custom:false },
+    { id:'b1', text:'Vestir a Fabián de maid, sin polo, xd', note:'Ns cómo es que acepteee xd, ya se me olvidó el trato, jkskjs', custom:false },
+    { id:'b2', text:'Salir de compras y preparar mamis en la casa de Ximenita, uwu', note:'¿Qué eran las mamis, amor?', custom:false },
+    { id:'b3', text:'Salir a una discoteca hasta el día siguiente y emborracharnos hasta olvidar, jkjksjks 7w7', note:'', custom:false },
+    { id:'b4', text:'Dibujar algo juntitos :3 e inmortalizarlo con una firma y un besito de amor <3', note:'', custom:false },
+    { id:'b5', text:'Dormir juntitos y apapachados, jaksdna, y ver una peli, plan relax, jkasjda', note:'O tal vez no, 7w7w7', custom:false },
+    { id:'b6', text:'Trepar cerrooooo, xd, y no morirnos en el intento', note:'También intentaremos acampar, jkajksk', custom:false },
+    { id:'b7', text:'Leer su diario :3 y enseñar su casita de muñecas', note:'O lo que queda de la casita, :v', custom:false },
   ];
   const MOODS = {
     amor:   { emoji:'💗', label:'Corazoncito' },
@@ -713,7 +714,7 @@ footer{ text-align:center; font-size:var(--text-xs); color:var(--muted); padding
       html += '<div class="note-check">' + checkSvg() + '</div>';
       html += '<div class="note-index">' + String(i+1).padStart(2,'0') + '</div>';
       html += '<div class="note-text">' + item.text + '</div>';
-      html += '<span class="note-tag">' + item.note + '</span>';
+      if (item.note) html += '<span class="note-tag">' + item.note + '</span>';
       html += '<div class="mood-row">' + Object.keys(MOODS).map(m =>
         '<button type="button" class="mood-chip' + (st.mood===m ? ' active':'') + '" data-mood="' + m + '" data-action="mood" title="' + MOODS[m].label + '"><span class="mood-emoji">' + MOODS[m].emoji + '</span></button>'
       ).join('') + '</div>';
